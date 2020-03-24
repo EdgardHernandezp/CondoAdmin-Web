@@ -26,15 +26,13 @@ public class IndexController {
 	}
 	
 	@PostMapping("/searchByName")
-	public String getSearchResults(String name, String lastName) {
-		List<Dwelling> dwellings = daoService.getDwellingByName(name, lastName); 
+	public String getSearchResults(String name, String lastName) { 
 		return "redirect:/result?name="+name+"&lastName="+lastName;
 	}
 	
 	@GetMapping("/result")
 	public String showResults(@RequestParam("name") String name, @RequestParam("lastName") String lastName, Model model) {
-		model.addAttribute("name", name);
-		model.addAttribute("lastName", lastName);
+		model.addAttribute("dwellings", daoService.getDwellingByName(name, lastName));
 		return "result";
 	}
 }
