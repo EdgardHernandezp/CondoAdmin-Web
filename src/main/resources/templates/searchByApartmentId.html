@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Search by Apartment ID</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	<form action="#" th:action="@{/searchByApartmentId}" method="post">
+		<div class="form-group">
+			<label for="dni">apartment ID</label> <input type="text"
+				class="form-control" name="apartmentId" id="apartmentId"
+				placeholder="Enter apartment's ID">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</body>
+</html>

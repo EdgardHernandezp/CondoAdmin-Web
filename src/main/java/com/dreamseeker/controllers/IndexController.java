@@ -33,12 +33,12 @@ public class IndexController {
 	
 	
 	@GetMapping("/searchByDni")
-	public String getByApartmentId() {
+	public String getByDni() {
 		return "searchByDni";
 	}
 	
 	@PostMapping("/searchByDni")
-	public String getByApartment(String dni, RedirectAttributes redirectAttr) {
+	public String redirectDniResult(String dni, RedirectAttributes redirectAttr) {
 		List<Dwelling> dwellings = new ArrayList<Dwelling>();
 		dwellings.add(daoService.getDwellingByDNI(dni));
 		
@@ -46,6 +46,24 @@ public class IndexController {
 		return "redirect:/result";
 	}
 
+	
+	
+	@GetMapping("/searchByApartmentId")
+	public String getByApartmentId() {
+		return "searchByApartmentId";
+	}
+	
+	@PostMapping("/searchByApartmentId")
+	public String redirectApartmentIdResults(String apartmentId, RedirectAttributes redirectAttr) {
+		List<Dwelling> dwellings = new ArrayList<Dwelling>();
+		dwellings.add(daoService.getDwellingByApartmentId(apartmentId));
+		
+		redirectAttr.addFlashAttribute("dwellings", dwellings);
+		return "redirect:/result";
+	}
+	
+	
+	
 	
 	@GetMapping("/result")
 	public String showResults(@RequestParam("name") String name, @RequestParam("lastName") String lastName, Model model) {
