@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,8 +28,11 @@ public class IndexController {
 	}
 	
 	@PostMapping("/searchByName")
-	public String redirectNameResults(String name, String lastName) { 
-		return "redirect:/result?name="+name+"&lastName="+lastName;
+	public String redirectNameResults(String name, String lastName, RedirectAttributes redirectAttr) { 
+		List<Dwelling> dwellings = daoService.getDwellingByName(name, lastName);
+		
+		redirectAttr.addFlashAttribute("dwellings", dwellings);
+		return "redirect:/result";
 	}
 	
 	
@@ -66,8 +70,8 @@ public class IndexController {
 	
 	
 	@GetMapping("/result")
-	public String showResults(@RequestParam("name") String name, @RequestParam("lastName") String lastName, Model model) {
-		model.addAttribute("dwellings", daoService.getDwellingByName(name, lastName));
+	public String showResults(@ModelAttribute("dwellings") List<Dwelling> dwellings , Model model) {
+		model.addAttribute("dwellings", dwellings); //TODO probar si es necesario guardar en el modelo nuevamente ¿Sigue el modelAtributte en el modelo?
 		return "result";
 	}
 }
