@@ -2,7 +2,6 @@ package com.dreamseeker.models.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,15 +15,20 @@ public class Debt implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(name = "apartmentId")
-	private String apartmentId;
-	private float debt;
+	private String apartmentID;
+	private float total;
 	private String month;
+	private String year;
 
-	public Debt(String apartmentID, float debt, String month) {
-		this.apartmentId = apartmentID;
-		this.debt = debt;
+	public Debt () {
+		
+	}
+	
+	public Debt(String apartmentID, float debt, String month, String year) {
+		this.apartmentID = apartmentID;
+		this.total = debt;
 		this.month = month;
+		this.year = year;
 	}
 
 	public Long getId() {
@@ -35,20 +39,20 @@ public class Debt implements Serializable {
 		this.id = id;
 	}
 
-	public String getDwellingID() {
-		return apartmentId;
+	public String getApartmentID() {
+		return apartmentID;
 	}
 
-	public void setDwellingID(String apartmentId) {
-		this.apartmentId = apartmentId;
+	public void setApartmentID(String apartmentId) {
+		this.apartmentID = apartmentId;
 	}
 
-	public float getDebt() {
-		return debt;
+	public float getTotal() {
+		return total;
 	}
 
-	public void setDebt(float debt) {
-		this.debt = debt;
+	public void setTotal(float debt) {
+		this.total = debt;
 	}
 
 	public String getMonth() {
@@ -57,5 +61,13 @@ public class Debt implements Serializable {
 
 	public void setMonth(String month) {
 		this.month = month;
+	}
+	
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
 	}
 }

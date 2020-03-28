@@ -9,6 +9,6 @@ import com.dreamseeker.models.entity.Debt;
 
 public interface DebtsRepository extends CrudRepository<Debt, Long>{
 
-	ArrayList<Debt> findAllByApartmentId(String id);
+	ArrayList<Debt> findAllByApartmentID(String id);
 
 }

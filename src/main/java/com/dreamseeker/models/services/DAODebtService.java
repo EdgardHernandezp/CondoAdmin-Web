@@ -14,6 +14,6 @@ public class DAODebtService {
 	DebtsRepository debtsRepo;
 	
 	public ArrayList<Debt> findDebtsByApartmentId(String id) {
-		return debtsRepo.findAllByApartmentId(id);
+		return debtsRepo.findAllByApartmentID(id);
 	}
 }
